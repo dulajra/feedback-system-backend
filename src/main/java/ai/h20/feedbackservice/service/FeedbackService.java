@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class FeedbackService {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(FeedbackService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FeedbackService.class);
 
     private final FeedbackRepository feedbackRepository;
 

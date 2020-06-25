@@ -14,14 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "/feedback")
 public class FeedbackController {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(FeedbackController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FeedbackController.class);
 
     private final FeedbackService feedbackService;
 
