@@ -6,6 +6,7 @@ import ai.h20.feedbackservice.service.FeedbackService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -39,9 +41,9 @@ public class FeedbackController {
     }
 
     @GetMapping
-    public Response<List<FeedbackDTO>> getAllFeedback() {
+    public Response<List<FeedbackDTO>> getAllFeedback(@RequestParam(value = "page", required = false, defaultValue = "0") Integer page, @RequestParam(value = "size", required = false, defaultValue = "10") Integer size) {
         LOGGER.info("Request received to get all feedback");
-        return new Response<>(feedbackService.getAllFeedback());
+        return new Response<>(feedbackService.getAllFeedback(PageRequest.of(page, size)));
     }
 
     @DeleteMapping(value = "{id}")
