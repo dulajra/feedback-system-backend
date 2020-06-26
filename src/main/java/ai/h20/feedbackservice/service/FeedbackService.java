@@ -2,6 +2,8 @@ package ai.h20.feedbackservice.service;
 
 import ai.h20.feedbackservice.dao.FeedbackRepository;
 import ai.h20.feedbackservice.model.Feedback;
+import ai.h20.feedbackservice.model.MetaData;
+import ai.h20.feedbackservice.model.Response;
 import ai.h20.feedbackservice.model.dto.FeedbackDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,8 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FeedbackService {
@@ -26,18 +28,20 @@ public class FeedbackService {
         this.feedbackRepository = feedbackRepository;
     }
 
-    public List<FeedbackDTO> getAllFeedback(Pageable pageable) {
-        Page<Feedback> allFeedback = feedbackRepository.findAll(pageable);
-        List<FeedbackDTO> feedbackList = new ArrayList<>();
-        allFeedback.forEach(f -> {
+    public Response<List<FeedbackDTO>> getAllFeedback(Pageable pageable) {
+        Page<Feedback> page = feedbackRepository.findAll(pageable);
+        List<FeedbackDTO> feedbackList = page.stream().map(feedback -> {
             FeedbackDTO feedbackDTO = new FeedbackDTO();
-            feedbackDTO.setId(f.getId());
-            feedbackDTO.setRating(f.getRating());
-            feedbackDTO.setComment(f.getComment());
-            feedbackList.add(feedbackDTO);
-        });
+            feedbackDTO.setId(feedback.getId());
+            feedbackDTO.setRating(feedback.getRating());
+            feedbackDTO.setComment(feedback.getComment());
+            return feedbackDTO;
+        }).collect(Collectors.toList());
 
-        return feedbackList;
+        Response<List<FeedbackDTO>> response = new Response<>(feedbackList);
+        response.setMeta(MetaData.from(page));
+
+        return response;
     }
 
     public FeedbackDTO saveFeedBack(FeedbackDTO feedbackDTO) {

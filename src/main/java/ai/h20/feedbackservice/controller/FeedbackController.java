@@ -41,9 +41,9 @@ public class FeedbackController {
     }
 
     @GetMapping
-    public Response<List<FeedbackDTO>> getAllFeedback(@RequestParam(value = "page", required = false, defaultValue = "0") Integer page, @RequestParam(value = "size", required = false, defaultValue = "10") Integer size) {
+    public Response<List<FeedbackDTO>> getAllFeedback(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page, @RequestParam(value = "size", required = false, defaultValue = "10") Integer size) {
         LOGGER.info("Request received to get all feedback");
-        return new Response<>(feedbackService.getAllFeedback(PageRequest.of(page, size)));
+        return feedbackService.getAllFeedback(PageRequest.of(page - 1, size));
     }
 
     @DeleteMapping(value = "{id}")
