@@ -57,7 +57,7 @@ Use the following command if you want to run in background.
 docker-compose -f CICD/docker/docker-compose.yml up --build -d
 ```
 
-Use the following command if you want to stop the containers running in the background.
+Use the following command if you want to stop the containers running in the background mode.
 
 ```
 docker-compose -f CICD/docker/docker-compose.yml down
