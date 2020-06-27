@@ -1,11 +1,13 @@
 # Feedback Service
 Sprint Boot Service for Feedback Frontend. 
 
-## Prerequisite
-1. Java 8 or higher
-
 ## Developer Guide 
 ### How to run on local machine
+#### Prerequisite
+1. Java 8 or higher
+2. Docker
+3. Docker Compose
+
 Start the MySQL database container.
 
 ```
@@ -22,13 +24,18 @@ export DB_USERNAME=root
 export DB_PASSWORD=password
 ```
 
-Run the service.
+Build and run the service.
 
 ```
+./gradlew build -x test
 ./gradlew bootRun
 ```
 
 ### How to run with docker 
+#### Prerequisite
+1. Docker
+2. Docker Compose
+
 Set the following environment variables on the host machine.
 
 ```
@@ -55,3 +62,6 @@ Use the following command if you want to stop the containers running in the back
 ```
 docker-compose -f CICD/docker/docker-compose.yml down
 ```
+
+### How to access
+You can access the service on [http://localhsot:8080](http://localhsot:8080)
