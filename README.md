@@ -64,4 +64,6 @@ docker-compose -f CICD/docker/docker-compose.yml down
 ```
 
 ### How to access
-You can access the service on [http://localhsot:8080](http://localhsot:8080)
+You can access the API on [http://localhsot:8080](http://localhsot:8080)
+
+You can access the Swagger console on [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) for testing purposes. 
