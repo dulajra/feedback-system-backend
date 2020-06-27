@@ -3,6 +3,7 @@ package ai.h20.feedbackservice.controller;
 import ai.h20.feedbackservice.model.Response;
 import ai.h20.feedbackservice.model.dto.FeedbackDTO;
 import ai.h20.feedbackservice.service.FeedbackService;
+import ai.h20.feedbackservice.utils.RequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +42,9 @@ public class FeedbackController {
     }
 
     @GetMapping
-    public Response<List<FeedbackDTO>> getAllFeedback(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page, @RequestParam(value = "size", required = false, defaultValue = "10") Integer size) {
+    public Response<List<FeedbackDTO>> getAllFeedback(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page, @RequestParam(value = "size", required = false, defaultValue = "5") Integer size) {
         LOGGER.info("Request received to get all feedback");
-        return feedbackService.getAllFeedback(PageRequest.of(page - 1, size));
+        return feedbackService.getAllFeedback(RequestUtils.getPageable(page, size));
     }
 
     @DeleteMapping(value = "{id}")
