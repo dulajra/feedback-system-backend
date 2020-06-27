@@ -33,6 +33,8 @@ public class FeedbackService {
         List<FeedbackDTO> feedbackList = page.stream().map(feedback -> {
             FeedbackDTO feedbackDTO = new FeedbackDTO();
             feedbackDTO.setId(feedback.getId());
+            feedbackDTO.setCreatedAt(feedback.getCreatedAt().getTime());
+            feedbackDTO.setName(feedback.getName());
             feedbackDTO.setRating(feedback.getRating());
             feedbackDTO.setComment(feedback.getComment());
             return feedbackDTO;
@@ -48,9 +50,11 @@ public class FeedbackService {
         Feedback feedback = new Feedback();
         feedback.setRating(feedbackDTO.getRating());
         feedback.setComment(feedbackDTO.getComment());
+        feedback.setName(feedbackDTO.getName());
 
         feedback = feedbackRepository.save(feedback);
         feedbackDTO.setId(feedback.getId());
+        feedbackDTO.setCreatedAt(feedback.getCreatedAt().getTime());
         return feedbackDTO;
     }
 
