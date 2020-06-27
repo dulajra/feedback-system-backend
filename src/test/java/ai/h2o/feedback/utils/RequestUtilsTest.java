@@ -1,4 +1,4 @@
-package ai.h20.feedbackservice.utils;
+package ai.h2o.feedback.utils;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Pageable;

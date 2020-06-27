@@ -1,4 +1,4 @@
-package ai.h20.feedbackservice;
+package ai.h2o.feedback;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

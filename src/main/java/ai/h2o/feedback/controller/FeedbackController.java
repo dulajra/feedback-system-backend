@@ -1,13 +1,12 @@
-package ai.h20.feedbackservice.controller;
+package ai.h2o.feedback.controller;
 
-import ai.h20.feedbackservice.model.Response;
-import ai.h20.feedbackservice.model.dto.FeedbackDTO;
-import ai.h20.feedbackservice.service.FeedbackService;
-import ai.h20.feedbackservice.utils.RequestUtils;
+import ai.h2o.feedback.model.Response;
+import ai.h2o.feedback.model.dto.FeedbackDTO;
+import ai.h2o.feedback.service.FeedbackService;
+import ai.h2o.feedback.utils.RequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

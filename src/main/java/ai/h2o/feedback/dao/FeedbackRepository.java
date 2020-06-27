@@ -1,6 +1,6 @@
-package ai.h20.feedbackservice.dao;
+package ai.h2o.feedback.dao;
 
-import ai.h20.feedbackservice.model.Feedback;
+import ai.h2o.feedback.model.Feedback;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;

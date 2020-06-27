@@ -1,4 +1,4 @@
-package ai.h20.feedbackservice.model.dto;
+package ai.h2o.feedback.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

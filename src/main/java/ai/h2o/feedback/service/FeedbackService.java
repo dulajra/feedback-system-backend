@@ -1,10 +1,10 @@
-package ai.h20.feedbackservice.service;
+package ai.h2o.feedback.service;
 
-import ai.h20.feedbackservice.dao.FeedbackRepository;
-import ai.h20.feedbackservice.model.Feedback;
-import ai.h20.feedbackservice.model.MetaData;
-import ai.h20.feedbackservice.model.Response;
-import ai.h20.feedbackservice.model.dto.FeedbackDTO;
+import ai.h2o.feedback.dao.FeedbackRepository;
+import ai.h2o.feedback.model.Feedback;
+import ai.h2o.feedback.model.MetaData;
+import ai.h2o.feedback.model.Response;
+import ai.h2o.feedback.model.dto.FeedbackDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

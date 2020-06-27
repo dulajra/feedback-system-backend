@@ -1,4 +1,4 @@
-package ai.h20.feedbackservice.model;
+package ai.h2o.feedback.model;
 
 import lombok.Getter;
 import lombok.Setter;
