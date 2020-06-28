@@ -22,8 +22,4 @@ services:
       - DB_NAME=${DB_NAME}
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: 0.0.0.0:24224
-        tag: httpd.access
+      -
