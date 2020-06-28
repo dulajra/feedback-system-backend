@@ -40,7 +40,7 @@ public class FeedbackController {
 
     @PostMapping
     public Response<FeedbackDTO> postFeedback(@RequestBody FeedbackDTO feedbackDTO) {
-        LOGGER.info("Request received to save feedback | Rating: {} } Comment: {}",
+        LOGGER.info("Request received to save feedback | Rating: {} | Comment: {}",
                 feedbackDTO.getRating(), feedbackDTO.getComment());
         return new Response<>(feedbackService.saveFeedBack(feedbackDTO));
     }
