@@ -1,6 +1,18 @@
 version: '3.1'
 
 services:
+  minio:
+    image: minio/minio
+    command: server /data
+    ports:
+    - 9000:9000
+  fluentd:
+    build: ./fluentd
+    volumes:
+      - ./fluentd/conf:/fluentd/etc
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
   feedback-db:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
@@ -16,7 +28,10 @@ services:
     ports:
       - 8080:8080
     depends_on:
+      - fluentd
       - feedback-db
+    links:
+      - fluentd
     environment:
       - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
@@ -25,5 +40,5 @@ services:
     logging:
       driver: "fluentd"
       options:
-        fluentd-address: 0.0.0.0:24224
+        fluentd-address: localhost:24224
         tag: httpd.access
