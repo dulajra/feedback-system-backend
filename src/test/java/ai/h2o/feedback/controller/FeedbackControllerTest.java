@@ -7,8 +7,6 @@ import ai.h2o.feedback.service.FeedbackService;
 import ai.h2o.feedback.utils.RequestUtils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -22,7 +20,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -32,8 +29,8 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -51,14 +48,6 @@ public class FeedbackControllerTest {
 
     @Autowired
     private MockMvc mvc;
-
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
 
     @Test
     public void testGetAllFeedback() throws Exception {
@@ -113,4 +102,11 @@ public class FeedbackControllerTest {
         assertEquals(1, jsonNode.get("data").get("id").intValue());
         assertNull(jsonNode.get("meta"));
     }
+
+    @Test
+    public void testDeleteFeedback() throws Exception {
+        mvc.perform(delete("/feedback/1"))
+                .andExpect(status().isOk());
+    }
+
 }
