@@ -94,3 +94,21 @@ Set correct values for `SONAR_HOST` and `SONAR_TOKEN` environment variables befo
 ```
 ./gradlew sonarqube -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_TOKEN
 ```
+
+### How to run streaming server logs to Minio
+I have created a separate docker setup to stream application logs to Minio.
+
+Here I use the fluentd log driver as the docker log driver for application server container.
+A fluentd container is also running as a side-car along with the server container. 
+Server sends server logs to fluentd and fluentd buffers and sends those logs to Minio. 
+
+Run the following command to start the server with Fluentd and Minio
+
+```
+docker-compose -f CICD/docker/docker-compose-fluentd.yml up --build
+```
+
+You can view the server logs in Minio Dashboard at `http://localhost:9000/`
+
+Please note that in `CICD/docker/fluentd/fluent.conf` I have set `timekey` as `1 minute` and `chunk_limit_size` as `1 MB` 
+to see the logs quickly in Minio. In real cases these values should be higher than this. 
