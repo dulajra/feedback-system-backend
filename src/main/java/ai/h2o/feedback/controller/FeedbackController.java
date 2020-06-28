@@ -1,5 +1,7 @@
 package ai.h2o.feedback.controller;
 
+import ai.h2o.feedback.model.Feedback;
+import ai.h2o.feedback.model.MetaData;
 import ai.h2o.feedback.model.Response;
 import ai.h2o.feedback.model.dto.FeedbackDTO;
 import ai.h2o.feedback.service.FeedbackService;
@@ -7,6 +9,7 @@ import ai.h2o.feedback.utils.RequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -43,7 +47,12 @@ public class FeedbackController {
     @GetMapping
     public Response<List<FeedbackDTO>> getAllFeedback(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page, @RequestParam(value = "size", required = false, defaultValue = "5") Integer size) {
         LOGGER.info("Request received to get all feedback");
-        return feedbackService.getAllFeedback(RequestUtils.getPageable(page, size));
+        Page<Feedback> feedbackPage = feedbackService.getAllFeedback(RequestUtils.getPageable(page, size));
+        List<FeedbackDTO> feedbackList = feedbackPage.stream().map(FeedbackDTO::from).collect(Collectors.toList());
+
+        Response<List<FeedbackDTO>> response = new Response<>(feedbackList);
+        response.setMeta(MetaData.from(feedbackPage));
+        return response;
     }
 
     @DeleteMapping(value = "{id}")

@@ -2,8 +2,6 @@ package ai.h2o.feedback.service;
 
 import ai.h2o.feedback.dao.FeedbackRepository;
 import ai.h2o.feedback.model.Feedback;
-import ai.h2o.feedback.model.MetaData;
-import ai.h2o.feedback.model.Response;
 import ai.h2o.feedback.model.dto.FeedbackDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +10,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class FeedbackService {
@@ -28,22 +23,8 @@ public class FeedbackService {
         this.feedbackRepository = feedbackRepository;
     }
 
-    public Response<List<FeedbackDTO>> getAllFeedback(Pageable pageable) {
-        Page<Feedback> page = feedbackRepository.findAll(pageable);
-        List<FeedbackDTO> feedbackList = page.stream().map(feedback -> {
-            FeedbackDTO feedbackDTO = new FeedbackDTO();
-            feedbackDTO.setId(feedback.getId());
-            feedbackDTO.setCreatedAt(feedback.getCreatedAt().getTime());
-            feedbackDTO.setName(feedback.getName());
-            feedbackDTO.setRating(feedback.getRating());
-            feedbackDTO.setComment(feedback.getComment());
-            return feedbackDTO;
-        }).collect(Collectors.toList());
-
-        Response<List<FeedbackDTO>> response = new Response<>(feedbackList);
-        response.setMeta(MetaData.from(page));
-
-        return response;
+    public Page<Feedback> getAllFeedback(Pageable pageable) {
+        return feedbackRepository.findAll(pageable);
     }
 
     public FeedbackDTO saveFeedBack(FeedbackDTO feedbackDTO) {

@@ -17,7 +17,7 @@ public class MetaData {
 
     public static <T> MetaData from (Page<T> page) {
         MetaData metaData = new MetaData();
-        metaData.setCurrentPage(page.getPageable().getPageNumber());
+        metaData.setCurrentPage(page.getPageable().getPageNumber() + 1);
         metaData.setPageSize(page.getPageable().getPageSize());
         metaData.setTotalItems(page.getTotalElements());
         metaData.setTotalPages(page.getTotalPages());
