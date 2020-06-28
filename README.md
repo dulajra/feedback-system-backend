@@ -82,6 +82,8 @@ Start a local temporary sonar community server
 docker run -p 9000:9000 sonarqube:7.9-community
 ```
 
+Local Sonar server can be access at [http://localhsot:9000](http://localhsot:9000)
+
 Perform Sonar analysis
 
 ```
