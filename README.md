@@ -110,7 +110,8 @@ Run the following command to start the server with Fluentd and Minio
 docker-compose -f CICD/docker/docker-compose-fluentd.yml up --build
 ```
 
-You can view the server logs in Minio Dashboard at `http://localhost:9000/`
+You can view the server logs in Minio Dashboard at [http://localhost:9090](http://localhost:9090). 
+Default username and password is `minioadmin` and `minioadmin`.
 
 Please note that in `CICD/docker/fluentd/fluent.conf` I have set `timekey` as `1 minute` and `chunk_limit_size` as `1 MB` 
 to see the logs quickly in Minio. In real cases these values should be higher than this. 
