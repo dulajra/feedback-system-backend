@@ -67,3 +67,30 @@ docker-compose -f CICD/docker/docker-compose.yml down
 You can access the API on [http://localhsot:8080](http://localhsot:8080)
 
 You can access the Swagger console on [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) for testing purposes. 
+
+### Tests and Sonar
+#### Run unit tests
+
+```
+./gradlew test
+```
+
+#### Run Sonar analysis
+Start a local temporary sonar community server
+
+```
+docker run -p 9000:9000 sonarqube:7.9-community
+```
+
+Perform Sonar analysis
+
+```
+./gradlew sonarqube
+```
+
+Run sonar pointing to a remote server.
+Set correct values for `SONAR_HOST` and `SONAR_TOKEN` environment variables before running the command.
+
+```
+./gradlew sonarqube -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_TOKEN
+```
