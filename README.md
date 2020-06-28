@@ -95,7 +95,7 @@ Set correct values for `SONAR_HOST` and `SONAR_TOKEN` environment variables befo
 ./gradlew sonarqube -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_TOKEN
 ```
 
-### How to run streaming server logs to Minio
+### How to run the service streaming server logs to Minio
 I have created a separate docker setup to stream application logs to Minio.
 
 Here I use the fluentd log driver as the docker log driver for application server container.
