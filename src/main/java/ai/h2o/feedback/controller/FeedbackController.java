@@ -39,8 +39,7 @@ public class FeedbackController {
         this.feedbackService = feedbackService;
     }
 
-    @ApiOperation(value = "Post New Feedback", notes = "Saves a new feedback", response =
-            Response.class)
+    @ApiOperation(value = "Post New Feedback", notes = "Saves a new feedback")
     @PostMapping
     public Response<FeedbackDTO> postFeedback(@RequestBody FeedbackDTO feedbackDTO) {
         LOGGER.info("Request received to save feedback | Rating: {} | Comment: {}",
@@ -48,8 +47,7 @@ public class FeedbackController {
         return new Response<>(feedbackService.saveFeedBack(feedbackDTO));
     }
 
-    @ApiOperation(value = "Fetch All Feedback", notes = "Retrieves all feedback with pagination", response =
-            Response.class)
+    @ApiOperation(value = "Fetch All Feedback", notes = "Retrieves all feedback with pagination")
     @GetMapping
     public Response<List<FeedbackDTO>> getAllFeedback(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page, @RequestParam(value = "size", required = false, defaultValue = "5") Integer size) {
         LOGGER.info("Request received to get all feedback");
@@ -61,8 +59,7 @@ public class FeedbackController {
         return response;
     }
 
-    @ApiOperation(value = "Delete Feedback", notes = "Delete feedback with given ID", response =
-            Response.class)
+    @ApiOperation(value = "Delete Feedback", notes = "Delete feedback with given ID")
     @DeleteMapping(value = "{id}")
     public void deleteFeedback(@PathVariable("id") Integer id) {
         LOGGER.info("Request received to delete feedback | Id: {}", id);
