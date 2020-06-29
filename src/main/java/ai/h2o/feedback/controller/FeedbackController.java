@@ -6,6 +6,7 @@ import ai.h2o.feedback.model.Response;
 import ai.h2o.feedback.model.dto.FeedbackDTO;
 import ai.h2o.feedback.service.FeedbackService;
 import ai.h2o.feedback.utils.RequestUtils;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,8 @@ public class FeedbackController {
         this.feedbackService = feedbackService;
     }
 
+    @ApiOperation(value = "Post New Feedback", notes = "Saves a new feedback", response =
+            Response.class)
     @PostMapping
     public Response<FeedbackDTO> postFeedback(@RequestBody FeedbackDTO feedbackDTO) {
         LOGGER.info("Request received to save feedback | Rating: {} | Comment: {}",
@@ -45,6 +48,8 @@ public class FeedbackController {
         return new Response<>(feedbackService.saveFeedBack(feedbackDTO));
     }
 
+    @ApiOperation(value = "Fetch All Feedback", notes = "Retrieves all feedback with pagination", response =
+            Response.class)
     @GetMapping
     public Response<List<FeedbackDTO>> getAllFeedback(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page, @RequestParam(value = "size", required = false, defaultValue = "5") Integer size) {
         LOGGER.info("Request received to get all feedback");
@@ -56,6 +61,8 @@ public class FeedbackController {
         return response;
     }
 
+    @ApiOperation(value = "Delete Feedback", notes = "Delete feedback with given ID", response =
+            Response.class)
     @DeleteMapping(value = "{id}")
     public void deleteFeedback(@PathVariable("id") Integer id) {
         LOGGER.info("Request received to delete feedback | Id: {}", id);

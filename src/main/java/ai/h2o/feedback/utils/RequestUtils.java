@@ -10,6 +10,12 @@ public class RequestUtils {
     private RequestUtils() {
     }
 
+    /**
+     * Validated the pagination parameters and reset to defaults in case not valid
+     * @param page - No of the page (Starts from 1)
+     * @param size - Size of the page
+     * @return - Returns @{@link Pageable} object with valid page no and size
+     */
     public static Pageable getPageable(int page, int size) {
         page = Math.max(page - 1, 0);
         size = Math.max(size, 1);
