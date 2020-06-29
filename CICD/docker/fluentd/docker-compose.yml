@@ -7,9 +7,9 @@ services:
     ports:
     - 9090:9000
   fluentd:
-    build: ./fluentd
+    build: .
     volumes:
-      - ./fluentd/conf:/fluentd/etc
+      - ./conf:/fluentd/etc
     ports:
       - "24224:24224"
       - "24224:24224/udp"
@@ -23,7 +23,7 @@ services:
       MYSQL_DATABASE: FEEDBACK
   feedback-service:
     build:
-      context: ../../
+      context: ../../..
       dockerfile: CICD/docker/Dockerfile
     ports:
       - 8080:8080

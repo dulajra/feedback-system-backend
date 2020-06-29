@@ -107,7 +107,7 @@ Server sends server logs to fluentd and fluentd buffers and sends those logs to 
 Run the following command to start the server with Fluentd and Minio
 
 ```
-docker-compose -f CICD/docker/docker-compose-fluentd.yml up --build
+docker-compose -f CICD/docker/fluentd/docker-compose.yml up --build
 ```
 
 You can view the server logs in Minio Dashboard at [http://localhost:9090](http://localhost:9090). 
