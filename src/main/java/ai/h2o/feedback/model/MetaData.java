@@ -15,6 +15,11 @@ public class MetaData {
     private Long totalItems;
     private Integer totalPages;
 
+    /**
+     * Extracts pagination information from @{@link Page} and set to meta field in reponse.
+     * @param page @{@link Page} object from pagination if any
+     * @return @{@link MetaData} with pagination information
+     */
     public static <T> MetaData from (Page<T> page) {
         MetaData metaData = new MetaData();
         metaData.setCurrentPage(page.getPageable().getPageNumber() + 1);
