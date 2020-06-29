@@ -64,7 +64,7 @@ docker-compose -f CICD/docker/docker-compose.yml down
 ```
 
 ### How to access
-You can access the API on [http://localhsot:8080](http://localhsot:8080)
+You can access the API on [http://localhost:8080](http://localhost:8080)
 
 You can access the Swagger console on [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) for testing purposes. 
 
@@ -82,7 +82,7 @@ Start a local temporary sonar community server
 docker run -p 9000:9000 sonarqube:7.9-community
 ```
 
-Local Sonar server can be access at [http://localhsot:9000](http://localhsot:9000)
+Local Sonar server can be access at [http://localhost:9000](http://localhost:9000)
 
 Perform Sonar analysis
 
